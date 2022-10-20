@@ -42,7 +42,7 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     title: PropTypes.string,
     id: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.number,
   }).isRequired,
 };
 
