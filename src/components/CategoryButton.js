@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import StoreContext from '../context/StoreContext';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
 function CategoryButton({ category, id }) {
+  const { setProductList } = useContext(StoreContext);
+
   const fetchCategory = async () => {
     const data = await getProductsFromCategoryAndQuery(id);
-    return data;
+    setProductList(data ? data.results : []);
   };
 
   return (
