@@ -6,6 +6,7 @@ function Provider({ children }) {
   const [productList, setProductList] = useState([]);
   const [productNotFound, setProductNotFound] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [productEvaluations, setProductEvaluations] = useState([]);
 
   const contextValues = {
     productList,
@@ -14,6 +15,8 @@ function Provider({ children }) {
     setProductNotFound,
     cartItems,
     setCartItems,
+    productEvaluations,
+    setProductEvaluations,
   };
 
   return (
