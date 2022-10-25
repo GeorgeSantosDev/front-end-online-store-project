@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StoreContext from '../context/StoreContext';
 import { setLocalStorage, getLocalStorage } from '../services/storage';
@@ -7,13 +7,44 @@ function ItemCart({ product }) {
   const { cartItems, setCartItems } = useContext(StoreContext);
   const [quantity, setQuantity] = useState(1);
 
-  const handleIncreseClick = () => {
-    setQuantity((prev) => prev + 1);
+  const quantityItem = !getLocalStorage('quantity') ? [] : getLocalStorage('quantity');
 
-    const quantityItem = !getLocalStorage('quantity') ? [] : getLocalStorage('quantity');
-    const newQuantity = [...quantityItem, { id: product.id, quantity: quantity + 1 }];
+  useEffect(() => {
+    const qtd = quantityItem.filter((item) => item.id === product.id);
+
+    return qtd[0] && setQuantity(qtd[0].quantity);
+  }, []);
+
+  const addProductQuantity = () => {
+    if (quantityItem.find((item) => item.id === product.id)) {
+      const newQuantity = quantityItem.map((item) => {
+        if (item.id === product.id) {
+          return { id: product.id, quantity: quantity + 1 };
+        }
+        return item;
+      });
+
+      setLocalStorage('quantity', newQuantity);
+    } else {
+      setLocalStorage('quantity', [...quantityItem,
+        { id: product.id, quantity: quantity + 1 }]);
+    }
+  };
+
+  const reduceProductQuantity = () => {
+    const newQuantity = quantityItem.map((item) => {
+      if (item.id === product.id) {
+        return { id: product.id, quantity: quantity - 1 };
+      }
+      return item;
+    });
 
     setLocalStorage('quantity', newQuantity);
+  };
+
+  const handleIncreseClick = () => {
+    setQuantity((prev) => prev + 1);
+    addProductQuantity();
   };
 
   const handleDecreseClick = () => {
@@ -21,6 +52,7 @@ function ItemCart({ product }) {
       if (prev === 1) {
         return 1;
       }
+      reduceProductQuantity();
       return prev - 1;
     });
   };
