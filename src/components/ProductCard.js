@@ -9,8 +9,8 @@ function ProductCard({ product }) {
 
   const handleClick = () => {
     const newProductAtCart = [...cartItems, product];
-    setCartItems(newProductAtCart);
     setLocalStorage('productsAtCart', newProductAtCart);
+    setCartItems(newProductAtCart);
   };
 
   return (
@@ -25,6 +25,11 @@ function ProductCard({ product }) {
       </Link>
 
       <p>{ product.price }</p>
+
+      {
+        product.shipping.free_shipping
+          && <p data-testid="free-shipping">Frete grátis</p>
+      }
 
       <button
         type="button"
@@ -43,6 +48,9 @@ ProductCard.propTypes = {
     title: PropTypes.string,
     id: PropTypes.string,
     price: PropTypes.number,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
 };
 
