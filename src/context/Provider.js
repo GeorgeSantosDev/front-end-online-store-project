@@ -7,6 +7,7 @@ function Provider({ children }) {
   const [productNotFound, setProductNotFound] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [productEvaluations, setProductEvaluations] = useState([]);
+  const [warningQuatityChange, setWarningQuantityChange] = useState(0);
 
   const contextValues = {
     productList,
@@ -17,6 +18,8 @@ function Provider({ children }) {
     setCartItems,
     productEvaluations,
     setProductEvaluations,
+    warningQuatityChange,
+    setWarningQuantityChange,
   };
 
   return (
