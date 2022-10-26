@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import StoreContext from '../context/StoreContext';
 import { getProductsFromCategoryAndQuery } from '../services/api';
+import '../styles/CategoryButton.css';
 
 function CategoryButton({ category, id }) {
   const { setProductList } = useContext(StoreContext);
@@ -16,6 +17,7 @@ function CategoryButton({ category, id }) {
       <button
         type="button"
         data-testid="category"
+        className="btn btn-dark category-btn"
         onClick={ fetchCategory }
         value={ id }
       >
