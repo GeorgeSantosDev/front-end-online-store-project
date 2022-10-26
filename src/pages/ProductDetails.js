@@ -32,6 +32,7 @@ function ProductDetails() {
 
   const handleClick = () => {
     const newProductAtCart = [...cartItems, product];
+
     setLocalStorage('productsAtCart', newProductAtCart);
     setCartItems(newProductAtCart);
   };
