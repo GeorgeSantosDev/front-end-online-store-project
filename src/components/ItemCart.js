@@ -73,7 +73,7 @@ function ItemCart({ product }) {
 
   const handleDelete = () => {
     const newCartItems = [...cartItems].filter((item) => item.id !== product.id);
-    const updateQuantity = getLocalStorage('quantity')
+    const updateQuantity = quantityItem && quantityItem
       .filter((item) => item.id !== product.id);
 
     setCartItems(newCartItems);
