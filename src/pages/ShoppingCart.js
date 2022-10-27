@@ -5,6 +5,7 @@ import StoreContext from '../context/StoreContext';
 import Header from '../components/Header';
 import ItemCart from '../components/ItemCart';
 import Total from '../components/Total';
+import '../styles/ShoppingCart.css';
 
 function ShoppingCart() {
   const { cartItems, setCartItems } = useContext(StoreContext);
@@ -19,20 +20,39 @@ function ShoppingCart() {
   }, []);
 
   return (
-    <div>
+    <div className="shopping-cart-container">
       <Header />
 
-      <main>
-        {
-          cartItems[0] ? cartItems.map((product, i) => (
-            <ItemCart product={ product } key={ `${i}-${product.id}` } />
-          ))
-            : <p data-testid="shopping-cart-empty-message"> Seu carrinho está vazio.</p>
-        }
+      <main className="shopping-cart-container-main">
+        <Link to="/" className="back-link">Voltar</Link>
+        <section className="container-flex">
+          <section className="shopping-cart-products-container">
+            <h2>Carrinho de compras</h2>
+            <hr className="line" />
+            {
+              cartItems[0] ? cartItems.map((product, i) => (
+                <ItemCart product={ product } key={ `${i}-${product.id}` } />
+              ))
+                : (
+                  <p data-testid="shopping-cart-empty-message">
+                    Seu carrinho está vazio
+                  </p>
+                )
+            }
+          </section>
 
-        <Total />
+          <section className="total-container">
+            <Total />
 
-        <Link to="/checkout" data-testid="checkout-products">Finalizar compra</Link>
+            <Link
+              to="/checkout"
+              data-testid="checkout-products"
+              className="finalize-btn"
+            >
+              Finalizar compra
+            </Link>
+          </section>
+        </section>
       </main>
     </div>
   );
