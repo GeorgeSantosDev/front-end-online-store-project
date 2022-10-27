@@ -57,3 +57,16 @@
   color: #31C28D;
   margin: 15px;
 }
+
+.empty-phrase {
+  font-family: 'Epilogue';
+  align-self: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 31px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #31C28D;
+  margin-top: 130px;
+}

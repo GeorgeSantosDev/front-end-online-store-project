@@ -34,7 +34,7 @@ function ShoppingCart() {
                 <ItemCart product={ product } key={ `${i}-${product.id}` } />
               ))
                 : (
-                  <p data-testid="shopping-cart-empty-message">
+                  <p data-testid="shopping-cart-empty-message" className="empty-phrase">
                     Seu carrinho está vazio
                   </p>
                 )
@@ -44,13 +44,17 @@ function ShoppingCart() {
           <section className="total-container">
             <Total />
 
-            <Link
-              to="/checkout"
-              data-testid="checkout-products"
-              className="finalize-btn"
-            >
-              Finalizar compra
-            </Link>
+            {
+              cartItems[0] && (
+                <Link
+                  to="/checkout"
+                  data-testid="checkout-products"
+                  className="finalize-btn"
+                >
+                  Finalizar compra
+                </Link>
+              )
+            }
           </section>
         </section>
       </main>
