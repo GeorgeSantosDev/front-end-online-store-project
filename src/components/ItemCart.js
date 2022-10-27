@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StoreContext from '../context/StoreContext';
 import { setLocalStorage, getLocalStorage } from '../services/storage';
+import '../styles/ItemCart.css';
 
 function ItemCart({ product }) {
   const { cartItems, setCartItems, setWarningQuantityChange } = useContext(StoreContext);
@@ -24,7 +25,7 @@ function ItemCart({ product }) {
   }, []);
 
   const addProductQuantity = () => {
-    if (quantityItem.find((item) => item.id === product.id)) {
+    if (quantityItem && quantityItem.find((item) => item.id === product.id)) {
       const newQuantity = quantityItem.map((item2) => {
         const updateQuantity = item2.id === product.id
           ? { id: product.id, quantity: quantity + 1 } : item2;
@@ -34,9 +35,11 @@ function ItemCart({ product }) {
 
       return setLocalStorage('quantity', newQuantity);
     }
+    const updateQuantity = quantityItem ? [...quantityItem,
+      { id: product.id, quantity: quantity + 1 }]
+      : [{ id: product.id, quantity: quantity + 1 }];
 
-    setLocalStorage('quantity', [...quantityItem,
-      { id: product.id, quantity: quantity + 1 }]);
+    setLocalStorage('quantity', updateQuantity);
   };
 
   const reduceProductQuantity = () => {
@@ -82,39 +85,46 @@ function ItemCart({ product }) {
   };
 
   return (
-    <div>
-      <p data-testid="shopping-cart-product-name">{`Produto ${product.title}`}</p>
-
-      <img src={ product.thumbnail } alt={ product.title } />
-
-      <p>{`R$ ${product.price}`}</p>
-
-      <div>
+    <div className="shoppin-cart-card">
+      <div className="shoppin-cart-item">
         <button
+          data-testid="remove-product"
           type="button"
-          data-testid="product-increase-quantity"
-          onClick={ handleIncreseClick }
+          onClick={ handleDelete }
+          className="btn btn-danger delete-btn"
         >
-          +
+          X
         </button>
-        <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={ handleDecreseClick }
-        >
-          -
-        </button>
+
+        <img src={ product.thumbnail } alt={ product.title } className="item-image" />
+
+        <p data-testid="shopping-cart-product-name" className="item-name">
+          {`Produto ${product.title}`}
+        </p>
+
+        <div className="update-quantity-container">
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            className="btn btn-dark"
+            onClick={ handleIncreseClick }
+          >
+            +
+          </button>
+          <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            className="btn btn-dark"
+            onClick={ handleDecreseClick }
+          >
+            -
+          </button>
+        </div>
+
+        <p className="item-price">{`R$ ${product.price}`}</p>
       </div>
-
-      <button
-        data-testid="remove-product"
-        type="button"
-        onClick={ handleDelete }
-      >
-        Excluir
-      </button>
-
+      <hr className="line" />
     </div>
   );
 }
