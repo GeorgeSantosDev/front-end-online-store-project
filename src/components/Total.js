@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { getLocalStorage } from '../services/storage';
 import StoreContext from '../context/StoreContext';
+import '../styles/Total.css';
 
 function Total() {
   const [totalToPay, setTotalToPay] = useState(0);
@@ -31,7 +32,7 @@ function Total() {
   }, [cartItems, warningQuatityChange]);
 
   return (
-    <span>{`Total a pagar: ${totalToPay.toFixed(2)}`}</span>
+    <span className="total">{`Total a pagar: ${totalToPay.toFixed(2)}`}</span>
   );
 }
 
