@@ -9,7 +9,7 @@ h2 {
 }
 
 .line {
-  width: 650px;
+  width: 90%;
   align-self: center;
 }
 
@@ -24,6 +24,7 @@ h2 {
 
 .shoppin-cart-item {
   display: flex;
+  justify-content: space-around;
 }
 
 .delete-btn {
