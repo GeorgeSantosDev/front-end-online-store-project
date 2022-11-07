@@ -25,6 +25,7 @@ function ShoppingCart() {
 
       <main className="shopping-cart-container-main">
         <Link to="/" className="back-link">Voltar</Link>
+
         <section className="container-flex">
           <section className="shopping-cart-products-container">
             <h2>Carrinho de compras</h2>
