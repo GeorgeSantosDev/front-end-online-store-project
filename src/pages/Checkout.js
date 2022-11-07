@@ -28,7 +28,7 @@ function Checkout() {
         <Link to="/shoppingcart" className="back-link">Voltar</Link>
 
         <section className="container-flex">
-          <section className="shopping-cart-products-container">
+          <div className="shopping-cart-products-container">
             <h2>Revise seus produtos</h2>
             <hr className="line" />
             {
@@ -37,7 +37,8 @@ function Checkout() {
               ))
             }
             <Total />
-          </section>
+          </div>
+
           <PaymentForm />
         </section>
       </main>
