@@ -5,6 +5,7 @@ import { getLocalStorage } from '../services/storage';
 import StoreContext from '../context/StoreContext';
 import cart from '../images/Vector.png';
 import logo from '../images/logo.png';
+import '../styles/Header.css';
 
 function Header() {
   const { setProductList,
@@ -51,31 +52,38 @@ function Header() {
 
   return (
     <header>
-      <label htmlFor="search">
-        <input
-          data-testid="query-input"
-          type="text"
-          id="search"
-          placeholder="Pesquisa"
-          value={ searchedProduct }
-          onChange={ handleChange }
-        />
-      </label>
+      <div className="header-elements-container">
+        <label htmlFor="search">
+          <input
+            data-testid="query-input"
+            type="text"
+            id="search"
+            className="search-input form-control"
+            placeholder="Pesquisa"
+            value={ searchedProduct }
+            onChange={ handleChange }
+          />
+        </label>
 
-      <button
-        data-testid="query-button"
-        type="button"
-        onClick={ handleClick }
-      >
-        Buscar
-      </button>
+        <button
+          data-testid="query-button"
+          type="button"
+          className="btn btn-success"
+          onClick={ handleClick }
+        >
+          Buscar
+        </button>
+      </div>
 
-      <img src={ logo } alt="front-end store logo " />
-      <sup>{ quantityOfProducts }</sup>
+      <img src={ logo } alt="front-end store logo " className="logo" />
 
-      <Link to="/shoppingcart" data-testid="shopping-cart-button">
-        <img src={ cart } alt="cart icon" />
-      </Link>
+      <div className="header-elements-container">
+        <Link to="/shoppingcart" data-testid="shopping-cart-button">
+          <img src={ cart } alt="cart icon" />
+        </Link>
+
+        <sub>{ quantityOfProducts }</sub>
+      </div>
     </header>
   );
 }

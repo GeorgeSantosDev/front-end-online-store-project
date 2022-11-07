@@ -1,0 +1,41 @@
+aside {
+  height: 1500px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-main-container {
+  margin-top: 98px;
+  display: flex;
+}
+
+.home-initial-phrase {
+  width: 30%;
+  height: 800px;
+  align-self: center;
+  margin-left: 580px;
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 31px;
+  text-align: center;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  color: #31C28D;
+}
+
+.home-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 86%;
+  min-height: 1500px;
+}

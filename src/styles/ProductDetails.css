@@ -1,0 +1,78 @@
+.product-details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details-main-container {
+  margin: 120px 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-details-container {
+  margin: 30px;
+  display: flex;
+  width: 38%;
+  padding: 10px;
+  justify-content: space-around;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.image-details-container {
+  width: 200px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  align-self: center;
+  margin: 15px;
+}
+
+.name-image-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.star-icon {
+  color: rgb(245, 245, 4);
+}
+
+.evaluation-field {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 180px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.rating-section {
+  width: 80%;
+  align-self: center;
+  margin: 100px;
+}
+
+.user-email { 
+  font-family: 'Epilogue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.product-desc {
+  font-family: 'Epilogue';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 16px;
+color: #94979D;
+}
+
+.item-infos {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-link {
+  width: 60%;
+  align-self: center;
+  margin: 15px;
+}

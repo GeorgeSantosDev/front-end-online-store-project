@@ -1,0 +1,21 @@
+.evaluation-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.evaluation-size {
+  width: 70%;
+  margin: 5px;
+}
+
+.evaluation-btn-size {
+  width: 20%;
+}
+
+.rating-container {
+  display: flex;
+  width: 40%;
+  margin: 10px;
+  justify-content: space-around;
+}

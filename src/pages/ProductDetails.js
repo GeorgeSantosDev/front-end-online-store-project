@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { useLocation, Link } from 'react-router-dom';
 import StoreContext from '../context/StoreContext';
 import { getProduct } from '../services/api';
 import { setLocalStorage, getLocalStorage } from '../services/storage';
 import Header from '../components/Header';
 import EvaluationForm from '../components/EvaluationForm';
+import '../styles/ProductDetails.css';
 
 function ProductDetails() {
   const { pathname } = useLocation();
@@ -43,87 +45,105 @@ function ProductDetails() {
   }, []);
 
   return (
-    <div>
+    <div className="product-details-container">
       <Header />
 
-      <main>
-        {
-          product.id && (
-            <div>
-              <p data-testid="product-detail-name">
-                { product.title }
-              </p>
+      <main className="product-details-main-container">
+        <Link to="/" className="back-link">Voltar</Link>
 
-              <img
-                src={ product.thumbnail }
-                data-testid="product-detail-image"
-                alt="Product"
-              />
+        <section className="container-flex">
+          {
+            product.id && (
+              <div className="item-details-container">
+                <div className="name-image-container">
+                  <p data-testid="product-detail-name" className="product-name">
+                    { product.title }
+                  </p>
 
-              <p data-testid="product-detail-price">
-                { product.price }
-              </p>
+                  <img
+                    src={ product.thumbnail }
+                    data-testid="product-detail-image"
+                    alt="Product"
+                    className="image-details-container"
+                  />
+                </div>
 
-              <a
-                data-testid="product-detail-link"
-                href={ product.permalink }
-              >
-                link
-              </a>
+                <div className="item-infos">
+                  <p data-testid="product-detail-price" className="item-price">
+                    { `R$ ${product.price}` }
+                  </p>
 
-              {
-                product.shipping.free_shipping
-                  && <p data-testid="free-shipping">Frete grátis</p>
-              }
-
-              <button
-                type="button"
-                data-testid="product-detail-add-to-cart"
-                onClick={ handleClick }
-              >
-                Adicionar ao carrinho
-              </button>
-            </div>
-          )
-        }
-
-        <EvaluationForm product={ product } />
-
-        {
-          product.id ? productEvaluations.filter((evals) => evals.id === product.id)
-            .map((review, i) => (
-              <section key={ `review-${review.id}-${i}` }>
-                <p data-testid="review-card-email">
-                  {review.email}
-                </p>
-                <p data-testid="review-card-evaluation">
-                  { review.description }
-                </p>
-                <div data-testid="review-card-rating">
                   {
-                    ['1', '2', '3', '4', '5'].map((rate, index) => {
-                      if (rate <= review.rate) {
+                    product.shipping.free_shipping
+                      && (
+                        <p data-testid="free-shipping" className="product-shipping">
+                          Frete grátis
+                        </p>
+                      )
+                  }
+
+                  <a
+                    data-testid="product-detail-link"
+                    href={ product.permalink }
+                    className="btn btn-dark product-link"
+                  >
+                    Ver oferta
+                  </a>
+
+                  <button
+                    type="button"
+                    data-testid="product-detail-add-to-cart"
+                    onClick={ handleClick }
+                    className="btn btn-primary add-btn"
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                </div>
+              </div>
+            )
+          }
+
+          <div className="evaluation-field">
+            <h2>Avaliação</h2>
+            <EvaluationForm product={ product } />
+          </div>
+        </section>
+        <section className="rating-section">
+          {
+            product.id ? productEvaluations.filter((evals) => evals.id === product.id)
+              .map((review, i) => (
+                <section key={ `review-${review.id}-${i}` }>
+                  <p data-testid="review-card-email" className="user-email">
+                    {review.email}
+                  </p>
+                  <p data-testid="review-card-evaluation" className="product-desc">
+                    { review.description }
+                  </p>
+                  <div data-testid="review-card-rating">
+                    {
+                      ['1', '2', '3', '4', '5'].map((rate, index) => {
+                        if (rate <= review.rate) {
+                          return (
+                            <AiFillStar
+                              key={ `Rate-${rate}-${index}` }
+                              className="star-icon"
+                            />
+                          );
+                        }
                         return (
-                          <input
+                          <AiOutlineStar
                             key={ `Rate-${rate}-${index}` }
-                            type="checkbox"
-                            checked
+                            className="star-icon"
                           />
                         );
-                      }
-                      return (
-                        <input
-                          key={ `Rate-${rate}-${index}` }
-                          type="checkbox"
-                          checked={ false }
-                        />
-                      );
-                    })
-                  }
-                </div>
-              </section>
-            )) : true
-        }
+                      })
+                    }
+                  </div>
+                  <hr />
+                </section>
+              )) : true
+          }
+        </section>
       </main>
     </div>
   );

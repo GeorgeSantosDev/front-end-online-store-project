@@ -4,7 +4,6 @@ import StoreContext from './StoreContext';
 
 function Provider({ children }) {
   const [productList, setProductList] = useState([]);
-  const [productNotFound, setProductNotFound] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [productEvaluations, setProductEvaluations] = useState([]);
   const [warningQuatityChange, setWarningQuantityChange] = useState(0);
@@ -12,8 +11,6 @@ function Provider({ children }) {
   const contextValues = {
     productList,
     setProductList,
-    productNotFound,
-    setProductNotFound,
     cartItems,
     setCartItems,
     productEvaluations,

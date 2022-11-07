@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import StoreContext from '../context/StoreContext';
 import { setLocalStorage } from '../services/storage';
+import '../styles/ProductCard.css';
 
 function ProductCard({ product }) {
   const { cartItems, setCartItems } = useContext(StoreContext);
@@ -14,27 +15,29 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div data-testid="product">
-      <img src={ product.thumbnail } alt={ product.title } />
+    <div data-testid="product" className="product-container">
+      <img src={ product.thumbnail } alt={ product.title } className="product-image" />
 
       <Link
         to={ `/productdetails/${product.id}` }
         data-testid="product-detail-link"
+        className="product-name"
       >
         { product.title }
       </Link>
 
-      <p>{ product.price }</p>
+      <p className="product-price">{ `R$ ${product.price}` }</p>
 
       {
         product.shipping.free_shipping
-          && <p data-testid="free-shipping">Frete grátis</p>
+          && <p data-testid="free-shipping" className="product-shipping">Frete grátis</p>
       }
 
       <button
         type="button"
         data-testid="product-add-to-cart"
         onClick={ handleClick }
+        className="btn btn-primary add-btn"
       >
         Adicionar ao Carrinho
       </button>
