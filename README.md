@@ -7,6 +7,9 @@
 </p>
 
 <p>
+  The code developed by all group is available in this branch: https://github.com/GeorgeSantosDev/front-end-online-store-project/tree/code-developed-by-the-group
+</p>
+<p>
     This was the first software development project I worked on as a group. I was able to develop skills such as communication, collaboration, active 
     listening and team work.
 </p>
