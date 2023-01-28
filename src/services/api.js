@@ -1,46 +1,28 @@
 export async function getCategories() {
-  try {
-    const response = await fetch('https://api.mercadolibre.com/sites/MLB/categories');
-    const data = response.json();
-
-    return data;
-  } catch (error) {
-    console.log(`Ocorreu um erro ${error}`);
-  }
+  const url = await fetch('https://api.mercadolibre.com/sites/MLB/categories');
+  const json = url.json();
+  return json;
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
-  try {
-    if (categoryId && query) {
-      const response = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`);
-      const data = await response.json();
-
-      return data;
-    }
-
-    if (categoryId) {
-      const response = await fetch(` https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`);
-      const data = await response.json();
-
-      return data;
-    }
-
-    const response = await fetch(` https://api.mercadolibre.com/sites/MLB/search?q=${query}`);
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log(`Ocorreu um erro ${error}`);
+  // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
+  if (categoryId && query) {
+    const requisitionCategoryIdAndQ = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`);
+    const jsonCategoryIdAndQ = await requisitionCategoryIdAndQ.json();
+    return jsonCategoryIdAndQ;
+  } if (categoryId) {
+    const requisition = await fetch(` https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}`);
+    const json = await requisition.json();
+    return json;
+  } if (query) {
+    const requisitionQuery = await fetch(` https://api.mercadolibre.com/sites/MLB/search?q=${query}`);
+    const jsonQuery = await requisitionQuery.json();
+    return jsonQuery;
   }
 }
 
 export async function getProduct(id) {
-  try {
-    const response = await fetch(`https://api.mercadolibre.com/items/${id}`);
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.log(`Ocorreu um erro ${error}`);
-  }
+  const requisition = await fetch(`https://api.mercadolibre.com/items/${id}`);
+  const json = await requisition.json();
+  return json;
 }

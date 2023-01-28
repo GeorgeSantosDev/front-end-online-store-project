@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Provider from './context/Provider';
 import Home from './pages/Home';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
 import Checkout from './pages/Checkout';
+import './App.css';
 
-function App() {
-  return (
-    <Provider>
+class App extends React.Component {
+  render() {
+    return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Home } />
@@ -17,8 +17,8 @@ function App() {
           <Route exact path="/checkout" component={ Checkout } />
         </Switch>
       </BrowserRouter>
-    </Provider>
-  );
+    );
+  }
 }
 
 export default App;
