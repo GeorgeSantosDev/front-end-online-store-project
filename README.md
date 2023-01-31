@@ -25,6 +25,7 @@
 <p> Karin Melo: https://github.com/KarinMeloTrybe; </p>
 <p> Felipe Bresciani: https://github.com/FelipeBresciani;</p>
 <p> Matheus Bezerra: https://github.com/Matheusbezerra-dev;</p>
+<p> Trybe:  https://github.com/tryber; </p>
 
 <h2>
  Built With
